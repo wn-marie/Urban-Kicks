@@ -34,6 +34,13 @@
     }
 }
 
+@media (max-width: 768px) {
+    body.dark-mode .nav-links {
+        background: #1e1e1e;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
+    }
+}
+
 @media (max-width: 480px) {
     .hero-content h1 {
         font-size: 2rem;

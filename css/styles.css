@@ -385,25 +385,34 @@ footer {
     border-radius: 10px;
 }
 
-/* Dark Mode Toggle Button */
-.dark-mode-toggle {
-    position: absolute;
-    top: 20px;
-    right: 150px; /* left of cart */
+/* Theme Toggle Button */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    padding: 0.4rem 0.6rem;
     background: var(--secondary);
-    color: white;
-    width: 50px;
-    height: 30px;
+    color: #fff;
     border: none;
-    border-radius: 50%;
+    border-radius: 999px;
     cursor: pointer;
-    font-size: 1.2rem;
-    z-index: 9999; /* Increase this to ensure it’s above the overlay */
-    transition: all 0.3s;
+    font-size: 1rem;
+    transition: transform 0.3s, background 0.3s;
 }
 
-.dark-mode-toggle:hover {
-    transform: rotate(20deg);
+.theme-toggle__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+    transform: translateY(-1px);
+    background: var(--primary);
 }
 
 /* For Dark Mode */
@@ -461,6 +470,34 @@ body.dark-mode .social-icons img {
 
 body.dark-mode .price {
     color: #f39c12;
+}
+
+body.dark-mode header {
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .features,
+body.dark-mode .testimonials,
+body.dark-mode .stats-section,
+body.dark-mode .faq-section {
+    background: #161616;
+}
+
+body.dark-mode .card-body,
+body.dark-mode .contact-content,
+body.dark-mode .about-content {
+    background: transparent;
+    color: inherit;
+}
+
+body.dark-mode .theme-toggle {
+    background: #f1c40f;
+    color: #121212;
+}
+
+body.dark-mode .theme-toggle:hover,
+body.dark-mode .theme-toggle:focus-visible {
+    background: #f39c12;
 }
 
 /* About Page Styles */

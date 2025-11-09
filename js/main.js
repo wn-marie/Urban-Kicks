@@ -65,28 +65,46 @@ if (backToTopButton) {
     });
 }
 
-// ============= DARK MODE TOGGLE =============
-const darkModeToggle = document.getElementById('darkModeToggle');
+// ============= THEME TOGGLE =============
+const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 
-// Check for saved user preference
-const savedMode = localStorage.getItem('darkMode');
-if (savedMode === 'enabled') {
-    body.classList.add('dark-mode');
-    if (darkModeToggle) darkModeToggle.textContent = '☀️';
-}
+const THEME_KEY = 'darkMode';
+const ICONS = {
+    light: '🌙',
+    dark: '☀️'
+};
 
-// Toggle dark mode
-if (darkModeToggle) {
-    darkModeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('darkMode', 'enabled');
-            darkModeToggle.textContent = '☀️';
-        } else {
-            localStorage.setItem('darkMode', 'disabled');
-            darkModeToggle.textContent = '🌙';
+const applyTheme = (isDark) => {
+    if (isDark) {
+        body.classList.add('dark-mode');
+        localStorage.setItem(THEME_KEY, 'enabled');
+        if (themeToggle) {
+            themeToggle.setAttribute('aria-pressed', 'true');
+            const icon = themeToggle.querySelector('.theme-toggle__icon');
+            if (icon) {
+                icon.dataset.theme = 'light';
+                icon.textContent = ICONS.dark;
+            }
         }
+    } else {
+        body.classList.remove('dark-mode');
+        localStorage.setItem(THEME_KEY, 'disabled');
+        if (themeToggle) {
+            themeToggle.setAttribute('aria-pressed', 'false');
+            const icon = themeToggle.querySelector('.theme-toggle__icon');
+            if (icon) {
+                icon.dataset.theme = 'dark';
+                icon.textContent = ICONS.light;
+            }
+        }
+    }
+};
+
+applyTheme(localStorage.getItem(THEME_KEY) === 'enabled');
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        applyTheme(!body.classList.contains('dark-mode'));
     });
 }
